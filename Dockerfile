@@ -12,7 +12,7 @@ COPY package*.json ./
 
 # Install dependencies.
 ENV NODE_ENV=production
-RUN npm ci --omit=dev
+RUN npm ci
 
 # Copy local code to the container image.
 COPY . ./
