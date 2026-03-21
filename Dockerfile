@@ -10,7 +10,11 @@ WORKDIR /usr/src/app
 # Copying this separately prevents re-running npm install on every code change.
 COPY package*.json ./
 
-# Install dependencies.
+# Install system dependencies (curl needed for health checks/tools).
+RUN apt-get update && apt-get install -y --no-install-recommends curl \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install Node dependencies.
 RUN npm i
 
 # Copy local code to the container image.
